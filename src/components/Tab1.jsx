@@ -26,21 +26,23 @@ const Tab1 = ({ disabled, onSubmit }) => {
   }
 
   return (
-    <>
-      <form className="tab-section" onSubmit={handleSubmit}>
-        <label htmlFor="number" className="text-lg font-bold mb-4">
-          Enter a number (1 - 100000)
-        </label>
-        <input
-          id="number"
-          type="number"
-          value={number}
-          onChange={handleChange}
-        />
-        {error && <p className="text-red-500">{error}</p>}
-        <input type="submit" value="Submit" />
-      </form>
-    </>
+    <form className="tab-section" onSubmit={handleSubmit}>
+      <label htmlFor="number" className="text-lg font-bold mb-4">
+        Enter a number (1 - 100000)
+      </label>
+      <input
+        id="number"
+        type="number"
+        value={number}
+        onChange={handleChange}
+        className="border rounded-lg px-3 py-2 mb-4"
+        placeholder="Enter a number"
+      />
+      {error && <p className="text-red-500">{error}</p>}
+      <Button type="submit" className="w-full">
+        Submit
+      </Button>
+    </form>
   );
 };
 

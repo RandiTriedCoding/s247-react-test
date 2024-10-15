@@ -2,12 +2,18 @@ import { useState } from "react";
 import Button from "./Button";
 import useFindMissingNumber from "../hooks/useFindMissingNumber";
 
-const Tab3 = ({ disabled, generatedNumbers }) => {
-  const [answer, setAnswer] = useState(0);
+const Tab3 = ({ disabled, generatedNumbers, answer, setAnswer, onNext }) => {
+  const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
-    const largestMissingPositive = useFindMissingNumber(generatedNumbers);
-    setAnswer(largestMissingPositive);
+    if (isClicked) {
+      setIsClicked((prev) => !prev);
+      onNext();
+    } else {
+      const largestMissingPositive = useFindMissingNumber(generatedNumbers);
+      setAnswer(largestMissingPositive);
+      setIsClicked((prev) => !prev);
+    }
   };
 
   if (disabled) {
@@ -20,7 +26,7 @@ const Tab3 = ({ disabled, generatedNumbers }) => {
         Find the Missing Positive Number
       </h2>
       <Button onClick={handleClick} className="mb-6">
-        Find Missing Number
+        {isClicked ? "Back to Tab 2" : "Find Missing Number"}
       </Button>
       {answer !== 0 && (
         <div className="mt-4 p-4 border border-green-500 bg-green-100 rounded">

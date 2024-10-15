@@ -5,7 +5,8 @@ const TabNav = ({ activeTab }) => {
     <nav>
       <ul className="flex space-x-4 border-b border-gray-300">
         {tabList.map((tab) => {
-          const isActive = activeTab === tab.id;
+          const isActive =
+            activeTab === tab.id || (activeTab === 3 && tab.id === 2);
           return (
             <li
               key={tab.id}

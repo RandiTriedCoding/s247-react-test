@@ -8,6 +8,7 @@ const Home = () => {
   const [activeTab, setActiveTab] = useState(1);
   const [inputNumber, setInputNumber] = useState(0);
   const [generatedNumbers, setGeneratedNumbers] = useState([]);
+  const [answer, setAnswer] = useState(0);
 
   const handleTab1Submit = (number) => {
     setInputNumber(number);
@@ -19,6 +20,11 @@ const Home = () => {
     setActiveTab(3);
   };
 
+  const handleTab3Next = () => {
+    setActiveTab(2);
+    setAnswer(0);
+  };
+
   return (
     <div className="container mx-auto p-4">
       <TabNav activeTab={activeTab} />
@@ -28,7 +34,13 @@ const Home = () => {
         inputNumber={inputNumber}
         onNext={handleTab2Next}
       />
-      <Tab3 disabled={activeTab !== 3} generatedNumbers={generatedNumbers} />
+      <Tab3
+        disabled={activeTab !== 3}
+        generatedNumbers={generatedNumbers}
+        answer={answer}
+        setAnswer={setAnswer}
+        onNext={handleTab3Next}
+      />
     </div>
   );
 };
